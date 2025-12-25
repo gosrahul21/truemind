@@ -1,8 +1,7 @@
 
-import { Bot, Users, CheckCircle, Clock, DollarSign, BarChart3, MessageSquare, Mail, Building2, Rocket, Target, Code, Database, ShoppingCart, Brain, Briefcase, Zap, Phone, Star, TrendingUp, ArrowRight, Linkedin, Twitter, Form } from 'lucide-react';
+import { Bot, Users, CheckCircle, Clock, DollarSign, BarChart3, MessageSquare, Mail, Building2, Rocket, Target, Zap, Phone, Star, TrendingUp, ArrowRight, Linkedin, Twitter, Form } from 'lucide-react';
 import Header from './components/Header';
 import FaqList from './components/FaqList';
-import CategoryFilter from './components/CategoryFilter';
 import Solutions from './components/Solutions';
 const LandingPage = () => {
 
