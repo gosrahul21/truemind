@@ -3,6 +3,9 @@ import { Bot, Users, CheckCircle, Clock, DollarSign, BarChart3, MessageSquare, M
 import Header from './components/Header';
 import FaqList from './components/FaqList';
 import Solutions from './components/Solutions';
+import Image from 'next/image';
+import logo from './logo.png';
+import Logo from './components/Logo';
 const LandingPage = () => {
 
   const services = [
@@ -724,10 +727,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Bot className="w-8 h-8 text-blue-400" />
-                <span className="text-xl font-bold">Truemind Labs</span>
-              </div>
+              <Logo color="white" />
               <p className="text-gray-400">
                 Transforming businesses with intelligent AI automation solutions.
               </p>

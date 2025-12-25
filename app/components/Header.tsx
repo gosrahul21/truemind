@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from '../logo.png';
 import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,8 +22,9 @@ const Header = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               {/* <Bot className={`w-8 h-8 ${isScrolled ? 'text-blue-600' : 'text-white'}`} /> */}
-              <Image src={logo} alt="Truemind Labs" width={100} height={100} />
+              {/* <Image src={logo} alt="Truemind Labs" width={100} height={100} /> */}
    {/* <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}>Truemind Labs</span> */}
+            <Logo color={isScrolled ? 'black' : 'white'} />
             </div>
             
             <div className="hidden md:flex space-x-8">
