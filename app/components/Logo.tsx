@@ -12,6 +12,7 @@ const Logo = ({color}: {color: string}) => {
       <Image draggable={false} src={truemindlabtxtblack} height={100} width={100} alt="Truemind Lawbs" />
     )}
   </div>
+
 );
 };
 

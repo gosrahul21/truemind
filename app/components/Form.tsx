@@ -61,7 +61,7 @@ const Form = () => {
           onChange={handleInputChange}
           required
           className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
-          placeholder="+91 98765 43210"
+          placeholder="+91 70045 72140"
         />
       </div>
 

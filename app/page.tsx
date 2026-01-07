@@ -3,9 +3,9 @@ import { Bot, Users, CheckCircle, Clock, DollarSign, BarChart3, MessageSquare, M
 import Header from './components/Header';
 import FaqList from './components/FaqList';
 import Solutions from './components/Solutions';
-import Image from 'next/image';
-import logo from './logo.png';
 import Logo from './components/Logo';
+import Link from 'next/link';
+
 const LandingPage = () => {
 
   const services = [
@@ -204,12 +204,12 @@ const LandingPage = () => {
               Save 70% on operational costs. Scale without limits. Let AI handle the repetitive work while your team focuses on growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
+              <Link href={'https://tally.so/r/jabXx4'} target='_blank' className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
                 Book Free Consultation
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105">
+              </Link>
+              <Link href={'https://tally.so/r/jabXx4'} target="_blank" className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105">
                 See How It Works
-              </button>
+              </Link>
             </div>
             <div className="mt-12 flex justify-center items-center gap-8 text-sm">
               <div className="flex items-center gap-2">
@@ -286,10 +286,10 @@ const LandingPage = () => {
           </div>
 
           <div className="text-center mb-8">
-            <button className="bg-white text-blue-900 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl mb-4 inline-flex items-center gap-3">
+            <Link target='_blank' href={'https://chat-agent-ui-beryl.vercel.app/'}  className="bg-white text-blue-900 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl mb-4 inline-flex items-center gap-3">
               <Zap className="w-6 h-6" />
               Launch Chat Agent Pro Free
-            </button>
+            </Link>
             <p className="text-white/90 text-sm max-w-2xl mx-auto mb-6">
               Works for ANY business requirement • Try it free, DM us for customization
             </p>
@@ -303,14 +303,14 @@ const LandingPage = () => {
                 Love the free tool but need WhatsApp integration, CRM sync, custom workflows, or white-label solutions? We&apos;ve got you covered!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-flex items-center justify-center gap-2">
+                <Link href={'https://tally.so/r/jabXx4'} className="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-flex items-center justify-center gap-2">
                   <Mail className="w-5 h-5" />
                   DM for Customization
-                </button>
-                <button className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all inline-flex items-center justify-center gap-2">
+                </Link>
+                {/* <button className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all inline-flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" />
                   Schedule Consultation
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -400,14 +400,14 @@ const LandingPage = () => {
               Whether you need simple integrations or a fully custom AI solution, we&apos;re here to help. Let&apos;s discuss your requirements!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl inline-flex items-center justify-center gap-2">
+              <Link href={'https://tally.so/r/jabXx4'} className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl inline-flex items-center justify-center gap-2">
                 <Mail className="w-5 h-5" />
                 DM Us for Quote
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2">
+              </Link>
+              <Link href={'https://tally.so/r/jabXx4'} className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2">
                 <Phone className="w-5 h-5" />
                 Book Free Consultation
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -662,7 +662,7 @@ const LandingPage = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-blue-600" />
-                    <a href="tel:+919876543210" className="text-gray-700 hover:text-blue-600">+91 98765 43210</a>
+                    <a href="tel:+917004572140" className="text-gray-700 hover:text-blue-600">+91 70045 72140</a>
                   </div>
                 </div>
               </div>
@@ -688,7 +688,7 @@ const LandingPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-300"
+              className="flex-1 px-6 py-4 rounded-full text-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
             />
             <button className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all whitespace-nowrap">
               Subscribe Free
@@ -711,9 +711,9 @@ const LandingPage = () => {
               Join 50+ companies already saving millions with AI automation
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl">
+              <Link href={'https://tally.so/r/jabXx4'} className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl">
                 Get Started Today <ArrowRight className="w-5 h-5" />
-              </button>
+              </Link>
               <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all">
                 Download Case Studies
               </button>
@@ -732,9 +732,9 @@ const LandingPage = () => {
                 Transforming businesses with intelligent AI automation solutions.
               </p>
               <div className="flex space-x-4 mt-6">
-                <Linkedin className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
-                <Twitter className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
-                <Mail className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
+                <a target='__blank' href='https://www.linkedin.com/company/110572348/admin/dashboard/'> <Linkedin  className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" /></a>
+                <a href=''><Twitter className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" /></a>
+                {/* <Mail className="w-6 h-6 text-gray-400 hover:text-blue-400 cursor-pointer" /> */}
               </div>
             </div>
 
@@ -767,7 +767,7 @@ const LandingPage = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  +91 98765 43210
+                  +91 70045 72140
                 </li>
                 <li>
                   Kolkata, West Bengal, India
@@ -777,7 +777,7 @@ const LandingPage = () => {
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Truemind Labs. All rights reserved.</p>
+            <p>&copy; 2026 Truemind Labs. All rights reserved.</p>
           </div>
         </div>
       </footer>
