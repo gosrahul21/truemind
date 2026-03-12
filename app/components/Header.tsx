@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import logo from '../logo.png';
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 const Header = () => {
@@ -28,7 +26,9 @@ const Header = () => {
             </div>
             
             <div className="hidden md:flex space-x-8">
-              {['Services', 'Projects', 'Pricing', 'FAQ', 'Blog', 'Contact'].map((item) => (
+              {['Services', 'Projects', 'Pricing',
+              //  'FAQ', 
+               'Blog', 'Contact'].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase().replace(' ', '-')}`} 
@@ -57,7 +57,9 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white shadow-lg">
             <div className="px-4 py-4 space-y-3">
-              {['Services', 'Projects', 'Pricing', 'FAQ', 'Blogs', 'Contact'].map((item) => (
+              {['Services', 'Projects', 'Pricing', 
+              // 'FAQ', 
+              'Blogs', 'Contact'].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase().replace(' ', '-')}`} 
