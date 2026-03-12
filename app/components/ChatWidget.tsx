@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Bot, MessageSquare } from 'lucide-react';
 import React from 'react';
+
+
+
 
 const ChatWidget: React.FC = () => {
   const [chatOpen, setChatOpen] = useState(false);
@@ -12,28 +15,162 @@ const ChatWidget: React.FC = () => {
   >([
     {
       from: 'agent',
-      text: 'Hi, I am the Truemind Labs AI assistant. How can I help you today?',
+      text: 'Hi, I am Alex, the Truemind Labs AI assistant. How can I help you today?',
     },
   ]);
+  const [isSending, setIsSending] = useState(false);
+  const [sessionId] = useState(() => {
+    if (typeof window !== 'undefined' && window.crypto?.randomUUID) {
+      return window.crypto.randomUUID();
+    }
+    return `session_${Date.now().toString(36)}_${Math.random()
+      .toString(36)
+      .slice(2)}`;
+  });
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const notificationMsgAudio = useMemo(() => new Audio('/notification-msg.wav'), [] ); 
+  notificationMsgAudio.volume = 0.8;
+
+  // const botOpenAudio = useMemo(() => new Audio('/bot-open.wav'), [] );
+  // botOpenAudio.volume = 0.8;
+  
+
+  useEffect(() => {
+    setTimeout(() => {
+      setChatOpen((value) => {
+        if(value) return value;
+
+        // try {
+        //   botOpenAudio.play().catch(() => {
+        //     // Ignore playback errors (e.g., autoplay blocked)
+        //   });
+        // } catch {
+        //   // Ignore audio errors
+        // }
+        return true;
+      });
+    }, 5000);
+  }, []);
+
+  // Auto-open chat and play a subtle notification sound on first visit
+
+
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!chatInput.trim()) return;
+    if (!chatInput.trim() || isSending) return;
 
     const userMessage = { from: 'user' as const, text: chatInput.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setChatInput('');
 
-    setTimeout(() => {
+    // Start empty agent message that we'll stream into
+    let currentAgentText = '';
+    setMessages((prev) => [...prev, { from: 'agent' as const, text: '' }]);
+
+    setIsSending(true);
+
+    try {
+      const response = await fetch(
+        'https://gosrahul21-n8n.hf.space/webhook/agentcall',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            sessionId,
+            message: userMessage.text,
+          }),
+        }
+      );
+
+      if (!response.body) {
+        throw new Error('No response body');
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+
+      const updateAgentMessage = (appendText: string) => {
+        currentAgentText += appendText;
+        setMessages((prev) => {
+          const updated = [...prev];
+          // Last message is the streaming agent message
+          const lastIndex = updated.length - 1;
+          if (lastIndex >= 0 && updated[lastIndex].from === 'agent') {
+            updated[lastIndex] = {
+              ...updated[lastIndex],
+              text: currentAgentText,
+            };
+          }
+          return updated;
+        });
+      };
+
+
+      try {
+        notificationMsgAudio.play().catch(() => {
+          // Ignore playback errors (e.g., autoplay blocked)
+        });
+      } catch {
+        // Ignore audio errors
+      }
+      // Stream NDJSON-style response
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          try {
+            const parsed = JSON.parse(trimmed);
+            if (parsed.type === 'item' && typeof parsed.content === 'string') {
+              updateAgentMessage(parsed.content);
+            }
+          } catch {
+            // Ignore malformed lines
+          }
+        }
+      }
+
+      // Process any remaining buffered line
+      const remaining = buffer.trim();
+      if (remaining) {
+        try {
+          const parsed = JSON.parse(remaining);
+          if (parsed.type === 'item' && typeof parsed.content === 'string') {
+            updateAgentMessage(parsed.content);
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
-          from: 'agent' as const,
-          text: 'Thanks for reaching out! A human from our team will follow up shortly. You can also call +91 70045 72140 for faster help.',
+          from: 'agent',
+          text: 'Sorry, something went wrong while connecting to the agent. Please try again or reach us at +91 70045 72140.',
         },
       ]);
-    }, 600);
+    } finally {
+      setIsSending(false);
+    }
   };
+
+  const lastMessage = messages[messages.length - 1];
+  const isAgentTyping =
+    isSending &&
+    lastMessage &&
+    lastMessage.from === 'agent' &&
+    lastMessage.text === '';
 
   return (
     <div className="fixed bottom-6 right-6 z-40">
@@ -45,7 +182,7 @@ const ChatWidget: React.FC = () => {
                 <Bot className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-sm font-bold">Truemind AI Agent</p>
+                <p className="text-sm font-bold">Alex</p>
                 <p className="text-[11px] text-emerald-300 font-mono">
                   Online · typically replies in seconds
                 </p>
@@ -79,6 +216,26 @@ const ChatWidget: React.FC = () => {
                 </div>
               </div>
             ))}
+            {isAgentTyping && (
+              <div className="flex justify-start">
+                <div className="px-3 py-2 rounded-2xl max-w-[80%] bg-white border border-slate-200 rounded-bl-sm">
+                  <div className="flex items-center gap-1">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce"
+                      style={{ animationDelay: '0ms' }}
+                    />
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce"
+                      style={{ animationDelay: '150ms' }}
+                    />
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce"
+                      style={{ animationDelay: '300ms' }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <form
@@ -95,7 +252,7 @@ const ChatWidget: React.FC = () => {
             <button
               type="submit"
               className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition-colors disabled:opacity-50"
-              disabled={!chatInput.trim()}
+              disabled={!chatInput.trim() || isSending}
               aria-label="Send message"
             >
               <MessageSquare className="w-4 h-4" />
