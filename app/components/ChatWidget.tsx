@@ -28,29 +28,40 @@ const ChatWidget: React.FC = () => {
       .slice(2)}`;
   });
 
-  const notificationMsgAudio = useMemo(() => new Audio('/notification-msg.wav'), [] ); 
-  notificationMsgAudio.volume = 0.8;
+  const [notificationMsgAudio, setNotificationMsgAudio] = useState<HTMLAudioElement | null>(null);
+  const [botOpenAudio, setBotOpenAudio] = useState<HTMLAudioElement | null>(null);
 
-  // const botOpenAudio = useMemo(() => new Audio('/bot-open.wav'), [] );
-  // botOpenAudio.volume = 0.8;
-  
 
   useEffect(() => {
+    // This code only runs in the browser
+    const audioInstance = new Audio('/notification-msg.wav');
+    audioInstance.volume = 0.8;
+    setNotificationMsgAudio(audioInstance);
+
+    const botOpenAudioInstance = new Audio('/bot-open.wav');
+    botOpenAudioInstance.volume = 0.8;
+    setBotOpenAudio(botOpenAudioInstance);
+  }, []);
+
+
+
+  useEffect(() => {
+    if(!botOpenAudio) return;
     setTimeout(() => {
       setChatOpen((value) => {
         if(value) return value;
 
-        // try {
-        //   botOpenAudio.play().catch(() => {
-        //     // Ignore playback errors (e.g., autoplay blocked)
-        //   });
-        // } catch {
-        //   // Ignore audio errors
-        // }
+          try {
+            botOpenAudio.play().catch(() => {
+              // Ignore playback errors (e.g., autoplay blocked)
+            });
+          } catch {
+            // Ignore audio errors
+          }
         return true;
       });
     }, 5000);
-  }, []);
+  }, [botOpenAudio]);
 
   // Auto-open chat and play a subtle notification sound on first visit
 
@@ -110,7 +121,7 @@ const ChatWidget: React.FC = () => {
 
 
       try {
-        notificationMsgAudio.play().catch(() => {
+        notificationMsgAudio?.play().catch(() => {
           // Ignore playback errors (e.g., autoplay blocked)
         });
       } catch {
