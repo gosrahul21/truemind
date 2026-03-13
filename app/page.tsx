@@ -9,6 +9,8 @@ import Logo from './components/Logo';
 import Form from './components/Form';
 import ChatWidget from './components/ChatWidget';
 import Link from 'next/link';
+import { scrollToSection } from './utils/scrollToSection';
+import Button from './widgets/button';
 
 const LandingPage = () => {
   const stats = [
@@ -87,12 +89,13 @@ const LandingPage = () => {
                 Scalable AI solutions for India and the world. Our smart calling assistants interact naturally in English, Hindi, and Bengali to bridge the gap between your business and its customers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="#contact" className="bg-blue-600 hover:bg-blue-50 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
+                <Button className="bg-blue-600 hover:bg-blue-50 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
                   Launch Your Agent <ArrowRight className="w-5 h-5" />
-                </Link>
-                <button className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all border border-slate-700 flex items-center justify-center gap-2">
+                </Button>
+                {/* very important for the future */}
+                {/* <button className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all border border-slate-700 flex items-center justify-center gap-2">
                   <Play className="w-5 h-5 fill-current" /> Hear Voice Demo
-                </button>
+                </button> */}
               </div>
             </div>
 
@@ -142,7 +145,7 @@ const LandingPage = () => {
       </section>
 
       {/* --- THE TRUEMIND ECOSYSTEM (REAL BUSINESSES) --- */}
-      <section className="py-24 bg-slate-50">
+      <section id="projects" className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-4">Built for Real Businesses</h2>
@@ -222,7 +225,9 @@ const LandingPage = () => {
                 <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> 3 Months Maintenance</li>
                 <li className="flex items-center gap-2 font-bold text-white italic"><Clock className="w-4 h-4" /> 15-Day Deployment</li>
               </ul>
-              <button className="w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">Contact Sales</button>
+              <Button className="w-full inline-flex justify-center py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">
+                Contact Sales
+              </Button>
             </div>
 
             {/* Scale & Voice Plan (MOST POPULAR) */}
@@ -237,7 +242,9 @@ const LandingPage = () => {
                 <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-white" /> Custom Intent Detection</li>
                 <li className="flex items-center gap-2 font-bold text-white italic"><Clock className="w-4 h-4" /> Priority 15-Day Launch</li>
               </ul>
-              <button className="w-full py-3 rounded-xl bg-white text-blue-600 hover:bg-blue-50 transition-all font-bold">Contact Sales</button>
+              <Button  className="w-full inline-flex justify-center py-3 rounded-xl bg-white text-blue-600 hover:bg-blue-50 transition-all font-bold">
+                Contact Sales
+              </Button>
             </div>
 
             {/* Custom Ecosystem Plan */}
@@ -250,7 +257,9 @@ const LandingPage = () => {
                 <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Dedicated Lab Support</li>
                 <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Multi-country Deployment</li>
               </ul>
-              <button className="w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">Contact Sales</button>
+              <Button className="w-full inline-flex justify-center py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">
+                Contact Sales
+              </Button>
             </div>
           </div>
         </div>

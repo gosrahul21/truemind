@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
+import { scrollToSection } from "../utils/scrollToSection";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,8 +36,9 @@ const Header = () => {
                   className={`${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-300'} transition-colors`}
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
-                    element?.scrollIntoView({ behavior: 'smooth' });
+                    // const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
+                    // element?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection(item);
                   }}
                 >
                   {item}
@@ -44,7 +46,7 @@ const Header = () => {
               ))}
             </div>
 
-            <button className="hidden md:block bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-cyan-700 transition-all">
+            <button onClick={()=>scrollToSection('contact')} className="hidden md:block bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-cyan-700 transition-all">
               Get Started
             </button>
 
@@ -66,15 +68,16 @@ const Header = () => {
                   className="block text-gray-700 hover:text-blue-600"
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
-                    element?.scrollIntoView({ behavior: 'smooth' });
+                    // const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
+                    // element?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection(item);
                     setIsMenuOpen(false);
                   }}
                 >
                   {item}
                 </a>
               ))}
-              <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full">
+              <button onClick={()=>scrollToSection('contact')} className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full">
                 Get Started
               </button>
             </div>

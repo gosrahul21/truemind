@@ -11,6 +11,8 @@ const Form = () => {
         message: '',
         budget: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({
@@ -19,9 +21,49 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formData);
+        if (isSubmitting) return;
+        setIsSubmitting(true);
+        setStatusMessage(null);
+
+        const payload = {
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          budget: formData.budget,
+          phoneNo: formData.phone,
+          interest: formData.message,
+        };
+
+        try {
+          const res = await fetch('https://gosrahul21-n8n.hf.space/webhook/enquiry-form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!res.ok) {
+            throw new Error(`Request failed with status ${res.status}`);
+          }
+
+          setStatusMessage('Thank you. Our team will reach out within 24 hours.');
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            message: '',
+            budget: ''
+          });
+        } catch (error) {
+          console.error('Failed to submit enquiry form', error);
+          setStatusMessage('Something went wrong. Please try again or contact us directly.');
+        } finally {
+          setIsSubmitting(false);
+        }
     };
   return (
     <div className="bg-white rounded-2xl p-8 shadow-2xl">
@@ -109,14 +151,22 @@ const Form = () => {
 
       <button
         type="submit"
-        className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
+        className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 disabled:opacity-60 disabled:hover:scale-100"
+        disabled={isSubmitting}
       >
-        Schedule Free Consultation <ArrowRight className="w-5 h-5" />
+        {isSubmitting ? 'Sending your enquiry...' : 'Schedule Free Consultation'}
+        {!isSubmitting && <ArrowRight className="w-5 h-5" />}
       </button>
 
       <p className="text-sm text-gray-500 text-center">
         We&apos;ll respond within 24 hours. No spam, ever.
       </p>
+
+      {statusMessage && (
+        <p className="text-sm text-center mt-2 text-gray-700">
+          {statusMessage}
+        </p>
+      )}
     </form>
   </div>
   )

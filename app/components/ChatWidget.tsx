@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Bot, MessageSquare } from 'lucide-react';
 import React from 'react';
 
@@ -9,14 +9,14 @@ import React from 'react';
 
 const ChatWidget: React.FC = () => {
   const [chatOpen, setChatOpen] = useState(false);
-  const [chatInput, setChatInput] = useState('');
+  const [chatInput, setChatInput] = useState('hi');
   const [messages, setMessages] = useState<
     { from: 'user' | 'agent'; text: string }[]
   >([
-    {
-      from: 'agent',
-      text: 'Hi, I am Alex, the Truemind Labs AI assistant. How can I help you today?',
-    },
+    // {
+    //   from: 'agent',
+    //   text: 'Hi, I am Alex, the Truemind Labs AI assistant. How can I help you today?',
+    // },
   ]);
   const [isSending, setIsSending] = useState(false);
   const [sessionId] = useState(() => {
@@ -28,56 +28,58 @@ const ChatWidget: React.FC = () => {
       .slice(2)}`;
   });
 
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
   const [notificationMsgAudio, setNotificationMsgAudio] = useState<HTMLAudioElement | null>(null);
-  const [botOpenAudio, setBotOpenAudio] = useState<HTMLAudioElement | null>(null);
+  // const [botOpenAudio, setBotOpenAudio] = useState<HTMLAudioElement | null>(null);
 
 
   useEffect(() => {
     // This code only runs in the browser
     const audioInstance = new Audio('/notification-msg.wav');
-    audioInstance.volume = 0.8;
+    audioInstance.volume = 0.5;
     setNotificationMsgAudio(audioInstance);
 
-    const botOpenAudioInstance = new Audio('/bot-open.wav');
-    botOpenAudioInstance.volume = 0.8;
-    setBotOpenAudio(botOpenAudioInstance);
   }, []);
 
-
-
-  useEffect(() => {
-    if(!botOpenAudio) return;
-    setTimeout(() => {
-      setChatOpen((value) => {
-        if(value) return value;
-
-          try {
-            botOpenAudio.play().catch(() => {
-              // Ignore playback errors (e.g., autoplay blocked)
-            });
-          } catch {
-            // Ignore audio errors
-          }
-        return true;
+  const onMessageReceived = ()=>{
+    try {
+      setChatOpen(true);
+      notificationMsgAudio?.play().catch(() => {
+        // Ignore playback errors (e.g., autoplay blocked)
       });
-    }, 5000);
-  }, [botOpenAudio]);
+    } catch {
+      // Ignore audio errors
+    }
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if(!notificationMsgAudio) return;
+    // setTimeout(() => {
+      // onMessageReceived();
+      // setChatInput('hi');
+      handleSendMessage();
+    // }, 3000);
+  }, [notificationMsgAudio]);
 
   // Auto-open chat and play a subtle notification sound on first visit
 
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSendMessage = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (!chatInput.trim() || isSending) return;
 
     const userMessage = { from: 'user' as const, text: chatInput.trim() };
-    setMessages((prev) => [...prev, userMessage]);
+    if (messages.length > 0) {
+      setMessages((prev) => [...prev, userMessage]);
+    }
     setChatInput('');
 
-    // Start empty agent message that we'll stream into
-    let currentAgentText = '';
-    setMessages((prev) => [...prev, { from: 'agent' as const, text: '' }]);
-
+          // Start empty agent message that we'll stream into
+          let currentAgentText = '';
+          setMessages((prev) => [...prev, { from: 'agent' as const, text: '' }]);
+      
     setIsSending(true);
 
     try {
@@ -103,6 +105,7 @@ const ChatWidget: React.FC = () => {
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
 
+
       const updateAgentMessage = (appendText: string) => {
         currentAgentText += appendText;
         setMessages((prev) => {
@@ -120,13 +123,7 @@ const ChatWidget: React.FC = () => {
       };
 
 
-      try {
-        notificationMsgAudio?.play().catch(() => {
-          // Ignore playback errors (e.g., autoplay blocked)
-        });
-      } catch {
-        // Ignore audio errors
-      }
+      onMessageReceived();
       // Stream NDJSON-style response
       while (true) {
         const { value, done } = await reader.read();
@@ -176,12 +173,19 @@ const ChatWidget: React.FC = () => {
     }
   };
 
-  const lastMessage = messages[messages.length - 1];
+  const lastMessage = messages.length? messages[messages.length - 1]:null;
   const isAgentTyping =
     isSending &&
     lastMessage &&
     lastMessage.from === 'agent' &&
     lastMessage.text === '';
+
+  // Always keep the latest message in view
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, [messages]);
 
   return (
     <div className="fixed bottom-6 right-6 z-40">
@@ -216,7 +220,7 @@ const ChatWidget: React.FC = () => {
                   msg.from === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
-                <div
+                {msg.text && <div
                   className={`px-3 py-2 rounded-2xl text-sm max-w-[80%] ${
                     msg.from === 'user'
                       ? 'bg-blue-600 text-white rounded-br-sm'
@@ -224,7 +228,7 @@ const ChatWidget: React.FC = () => {
                   }`}
                 >
                   {msg.text}
-                </div>
+                </div>}
               </div>
             ))}
             {isAgentTyping && (
@@ -247,6 +251,7 @@ const ChatWidget: React.FC = () => {
                 </div>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
 
           <form
