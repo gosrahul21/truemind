@@ -39,8 +39,23 @@ const ChatWidget: React.FC = () => {
     const audioInstance = new Audio('/notification-msg.wav');
     audioInstance.volume = 0.5;
     setNotificationMsgAudio(audioInstance);
-
+    trackIp();
   }, []);
+
+  const trackIp = async ()=>{
+    await fetch(
+      'https://gosrahul21-n8n.hf.space/webhook/trackIp',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionId,
+        }),
+      }
+    );
+  }
 
   const onMessageReceived = ()=>{
     try {
