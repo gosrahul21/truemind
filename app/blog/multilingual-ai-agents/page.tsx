@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Calendar, Clock, ArrowLeft, Share2, Linkedin, Twitter, 
-  CheckCircle2, Globe, MessageCircle, Cpu, Languages
+  CheckCircle2, Globe, MessageCircle,
 } from 'lucide-react';
 import Link from 'next/link';
 import Header from '@/app/components/Header'; // Adjust path based on your setup

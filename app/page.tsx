@@ -89,7 +89,7 @@ const LandingPage = () => {
                 Scalable AI solutions for India and the world. Our smart calling assistants interact naturally in English, Hindi, and Bengali to bridge the gap between your business and its customers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-blue-600 hover:bg-blue-50 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
                   Launch Your Agent <ArrowRight className="w-5 h-5" />
                 </Button>
                 {/* very important for the future */}

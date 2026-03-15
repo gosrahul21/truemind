@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Calendar, Clock, User, ArrowLeft, 
   Share2, Linkedin, Twitter, CheckCircle2,
@@ -58,9 +57,10 @@ const SolarBlogDeepDive = () => {
         {/* --- FEATURED IMAGE --- */}
         <div className="max-w-6xl mx-auto px-4 mb-16">
           <div className="aspect-video rounded-[2rem] overflow-hidden bg-slate-100 shadow-2xl relative">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=1400" 
               alt="Solar Panel Array installation" 
+              width={"100"}
               className="w-full h-full object-cover"
             />
             
