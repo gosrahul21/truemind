@@ -119,7 +119,7 @@ const Form = () => {
           placeholder="Your Company"
         />
       </div>
-
+{/* 
       <div>
         <label className="block text-sm font-semibold text-gray-700 mb-2">Budget Range</label>
         <select
@@ -134,7 +134,7 @@ const Form = () => {
           <option value="10l-20l">₹10L - ₹20L</option>
           <option value="20l-plus">₹20L+</option>
         </select>
-      </div>
+      </div> */}
 
       <div>
         <label className="block text-sm font-semibold text-gray-700 mb-2">What would you like to automate? *</label>
