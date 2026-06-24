@@ -1,357 +1,348 @@
-import { 
-  Bot, Users, CheckCircle, Clock, DollarSign, BarChart3, 
-  MessageSquare, Mail, Building2, Rocket, Target, Zap, 
-  Phone, Star, TrendingUp, ArrowRight, Linkedin, Twitter, 
-  Play, Volume2, ShieldCheck, MapPin, Globe
-} from 'lucide-react';
+import { ArrowRight, ExternalLink, ChevronDown, Linkedin, Twitter } from 'lucide-react';
 import Header from './components/Header';
-import Logo from './components/Logo';
-import Form from './components/Form';
-import ChatWidget from './components/ChatWidget';
 import Link from 'next/link';
-import { scrollToSection } from './utils/scrollToSection';
 import Button from './widgets/button';
+import { scrollToSection } from './utils/scrollToSection';
 
 const LandingPage = () => {
-  const stats = [
-    { number: '70%', label: 'Lower Staff Costs' },
-    { number: '24/7', label: 'Day & Night Coverage' },
-    { number: '15 Days', label: 'Guaranteed Deployment' },
-    { number: '99%', label: 'Human-like Accuracy' }
-  ];
-
-  const automationUseCases = [
-    {
-      title: 'Automatic Sales Calling',
-      description: 'AI callers that talk to your customers like a real staff member and book meetings directly into your CRM or diary.',
-      benefit: '3x More Sales Appointments',
-      icon: Phone,
-      color: 'blue'
-    },
-    {
-      title: 'Smart Reminders',
-      description: 'Automated payment and service reminders via Voice, WhatsApp, and SMS with intent detection.',
-      benefit: 'Reduce overdue payments by 40%',
-      icon: Clock,
-      color: 'cyan'
-    },
-    {
-      title: 'Smart Lead Sorting',
-      description: 'Analyze customer replies to decide who is ready to buy, who needs a reminder, and who should go to a human.',
-      benefit: 'No more manual data entry',
-      icon: Target,
-      color: 'purple'
-    }
-  ];
-
-  const industryVerticals = [
-    {
-      name: 'Solar & EPC',
-      context: 'Case Study: Life Solar',
-      features: ['Automatic Customer Filtering', 'Project Update Alerts', 'Maintenance Alerts'],
-      image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=400',
-    },
-    {
-      name: 'Agri-Business',
-      context: 'Case Study: Jharkhand Fertilizers',
-      features: ['Seasonal Sowing Alerts', 'Subsidy Notifications', 'Weather Warnings'],
-      image: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=400',
-    },
-    {
-      name: 'Home Services',
-      context: 'Case Study: Oraplus',
-      features: ['Staff Booking & Routing', 'Real-time ETA', 'Feedback Collection'],
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6954?auto=format&fit=crop&q=80&w=400',
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 relative">
+    <div className="min-h-screen bg-[#0a0a0a] font-sans text-white relative selection:bg-cyan-500/30">
       <Header />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative bg-[#020617] text-white pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
-          <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-cyan-600/20 rounded-full blur-[120px] animate-pulse"></div>
+      <section className="relative bg-[#0a0a0a] text-white pt-32 pb-24 min-h-screen flex items-center overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden opacity-20" style={{ backgroundImage: 'radial-gradient(#2A2A2A 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="flex flex-col items-center text-center">
+            <div className="font-mono text-cyan-400 text-sm mb-8 tracking-widest uppercase">
+              // est. 2025 — building in public
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-none">
+              A lab where ideas<br/>become apps.
+            </h1>
+            <p className="text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed">
+              We experiment, build, and ship mobile, web, and iOS apps that solve real problems. No committees. No waiting. Just products in the world.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-8 py-4 rounded-none font-bold text-lg transition-all flex items-center justify-center gap-2">
+                See our products <ArrowRight className="w-5 h-5" />
+              </Button>
+              <Link 
+                href="#about"
+                className="text-slate-300 hover:text-white px-8 py-4 font-bold text-lg transition-all flex items-center justify-center gap-2"
+              >
+                Read our story
+              </Link>
+            </div>
+          </div>
         </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
+          <ChevronDown className="w-6 h-6" />
+        </div>
+      </section>
+
+      {/* --- PHILOSOPHY --- */}
+      <section className="py-24 bg-[#141414] border-y border-[#2A2A2A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-mono text-cyan-400 text-sm mb-16 tracking-widest uppercase">how we work</h2>
+          <div className="grid md:grid-cols-3 gap-16 md:gap-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
-                <Zap className="w-4 h-4" /> 15-Day Deployment Guarantee
+              <div className="font-mono text-4xl font-black text-slate-800 mb-6">01</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Learn fast</h3>
+              <p className="text-slate-400 leading-relaxed">We pick up new tools, frameworks, and domains in days — not months. Curiosity is our competitive edge.</p>
+            </div>
+            <div>
+              <div className="font-mono text-4xl font-black text-slate-800 mb-6">02</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fail fast</h3>
+              <p className="text-slate-400 leading-relaxed">Every failed experiment is a case study. We document what broke, why, and what it taught us.</p>
+            </div>
+            <div>
+              <div className="font-mono text-4xl font-black text-slate-800 mb-6">03</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Ship fast</h3>
+              <p className="text-slate-400 leading-relaxed">An idea sitting in a doc is not a product. We launch early, gather feedback, and improve in public.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PRODUCTS SHOWCASE --- */}
+      <section id="products" className="py-32 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-20">
+            <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">what we've built</h2>
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">Products that exist in the world.</h3>
+            <p className="text-slate-400 max-w-2xl text-lg">Every app here started as an experiment. Some are live, some are in beta, all are real.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Product 1 */}
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Web</span>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight">
-                AI Agents with a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Human Mind</span>
-              </h1>
-              <p className="text-lg  mb-10 text-slate-400 max-w-xl leading-relaxed">
-                Scalable AI solutions for India and the world. Our smart calling assistants interact naturally in English, Hindi, and Bengali to bridge the gap between your business and its customers.
+              <h4 className="text-3xl font-bold text-white mb-4">Reddit Lead Assistant</h4>
+              <p className="text-slate-400 mb-8 text-lg">An AI agent that finds high-intent leads on Reddit and drafts personalized outreach.</p>
+              <Link href="#" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                View <ExternalLink className="w-4 h-4" />
+              </Link>
+            </div>
+            
+            {/* Product 2 */}
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group md:mt-16">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Web</span>
+              </div>
+              <h4 className="text-3xl font-bold text-white mb-4">addsubtitles.tech</h4>
+              <p className="text-slate-400 mb-8 text-lg">Add Viral Subtitles & Edit Videos in Seconds. Add subtitles automatically without watermarks. Fast, accurate, and packed with a massive collection of styles and AI-powered features. The ultimate web-based editor for TikTok, Shorts, and Reels.</p>
+              <Link href="https://addsubtitles.tech" target="_blank" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                View <ExternalLink className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Product 3 */}
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Extension</span>
+              </div>
+              <h4 className="text-3xl font-bold text-white mb-4">Tab Guru</h4>
+              <p className="text-slate-400 mb-8 text-lg">You opened that tab for a reason. Come back to it. Tab Guru gently reminds you why each tab exists — so you can browse with purpose, not just habit. No blocking. No judgment. Just a quiet nudge back to what matters.</p>
+              <Link href="https://tabguru.truemindlabs.com" target="_blank" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                View <ExternalLink className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+          
+          <div className="text-center font-mono text-slate-500 text-sm mt-12">
+            + More coming. We ship every few weeks.
+          </div>
+        </div>
+      </section>
+
+      {/* --- CASE STUDIES --- */}
+      <section id="case-studies" className="py-32 bg-[#141414] border-t border-[#2A2A2A]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-20">
+            <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">case studies</h2>
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">We document what we learn.</h3>
+            <p className="text-slate-400 text-lg max-w-2xl">Building in public means sharing the wins and the wreckage. Here's what we've learned from the things we've shipped.</p>
+          </div>
+          
+          <div className="space-y-0">
+            {[
+              { 
+                date: 'Jun 2025', 
+                title: 'What we learned building Reddit Lead Assistant', 
+                readTime: '5 min read',
+                href: '/case-studies/reddit-lead-assistant',
+                description: 'An honest look at the architecture, the mistakes made along the way, and the final results.'
+              },
+              { 
+                date: 'May 2025', 
+                title: 'Why our first iOS app failed (and what we salvaged)', 
+                readTime: '8 min read',
+                href: '/case-studies/first-ios-app-failed',
+                description: 'A deep dive into the pitfalls of our first mobile launch and how we pivoted our strategy to recover.'
+              },
+              { 
+                date: 'Apr 2025', 
+                title: 'Switching from Next.js to raw React for speed', 
+                readTime: '4 min read',
+                href: '/case-studies/nextjs-to-react',
+                description: 'Why we ditched the framework overhead and embraced simplicity to achieve blazing fast load times.'
+              }
+            ].map((study, idx) => (
+              <Link href={study.href} key={idx} className="block group border-b border-[#2A2A2A] py-8 relative transition-all hover:bg-[#0a0a0a] px-6 -mx-6">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-400 scale-y-0 group-hover:scale-y-100 transition-transform origin-center"></div>
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
+                  <div>
+                    <div className="font-mono text-slate-500 text-sm mb-3">{study.date}</div>
+                    <h4 className="text-2xl font-bold text-white mb-2">{study.title}</h4>
+                    <p className="text-slate-400 text-lg">{study.description}</p>
+                  </div>
+                  <div className="flex items-center gap-4 mt-4 md:mt-0 shrink-0">
+                    <span className="font-mono text-slate-500 text-sm">{study.readTime}</span>
+                    <span className="text-cyan-400 font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Read <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- SERVICES / WORK WITH US --- */}
+      <section className="py-32 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div>
+              <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">for founders & teams</h2>
+              <h3 className="text-4xl md:text-5xl font-bold text-white mb-8">Got a problem worth solving?<br/>We build apps for people who mean it.</h3>
+              <p className="text-slate-400 text-lg mb-12">
+                TrueMindLabs takes on select app development projects. If you have a real problem and want a team that moves fast and cares about craft — let's talk.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
-                  Launch Your Agent <ArrowRight className="w-5 h-5" />
-                </Button>
-                {/* very important for the future */}
-                {/* <button className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all border border-slate-700 flex items-center justify-center gap-2">
-                  <Play className="w-5 h-5 fill-current" /> Hear Voice Demo
-                </button> */}
-              </div>
+              <Link href="#contact" className="inline-flex border border-cyan-500 text-cyan-400 px-8 py-4 font-bold transition-all hover:bg-cyan-500/10 items-center gap-3 w-max">
+                Start a conversation <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
-
-            {/* Visual Feature: The "Mind" Interface */}
-            <div className="relative">
-              <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-red-500 animate-ping"></div>
-                    <span className="text-sm font-mono text-slate-400">TRUEMIND VOICE AGENT</span>
-                  </div>
-                  <Volume2 className="text-blue-400" />
-                </div>
-                <div className="space-y-4">
-                  <div className="bg-blue-600/10 border border-blue-500/20 p-4 rounded-2xl rounded-tl-none ml-0 mr-12">
-                    <p className="text-sm text-blue-100">&quot;Hello! I&apos;m calling from Life Solar regarding your installation scheduled for tomorrow. Is 10 AM still good for you?&quot;</p>
-                  </div>
-                  <div className="bg-slate-800/50 p-4 rounded-2xl rounded-tr-none ml-12 mr-0 text-right">
-                    <p className="text-sm text-slate-300">&quot;Actually, can we move it to 2 PM?&quot;</p>
-                  </div>
-                  <div className="bg-blue-600/10 border border-blue-500/20 p-4 rounded-2xl rounded-tl-none ml-0 mr-12">
-                    <p className="text-sm text-blue-100">&quot;Of course. I&apos;ve updated the technicians&apos; schedule to 2 PM. You&apos;ll receive a confirmation SMS shortly.&quot;</p>
-                  </div>
-                </div>
-                <div className="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
-                  <div className="text-xs text-slate-500">Response Time: Instant</div>
-                  <div className="text-xs text-green-400 font-mono italic">Action: Booking Updated ✅</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- STATS BAR --- */}
-      <section className="py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-4xl font-black text-blue-600 mb-1">{stat.number}</div>
-                <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- THE TRUEMIND ECOSYSTEM (REAL BUSINESSES) --- */}
-      <section id="projects" className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4">Built for Real Businesses</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">We don&apos;t just build AI; we solve real-world operational challenges. Our technology powers industry leaders across global markets.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {industryVerticals.map((item, idx) => (
-              <div key={idx} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 group">
-                <div className="h-48 overflow-hidden relative">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="text-xs font-bold uppercase tracking-wider opacity-80">{item.context}</p>
-                    <h3 className="text-xl font-bold">{item.name}</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    {item.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2 text-slate-600 text-sm">
-                        <CheckCircle className="w-4 h-4 text-green-500" /> {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- WHAT WE AUTOMATE --- */}
-      <section id="services" className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">One Mind. <br/><span className="text-blue-600">Infinite Tasks.</span></h2>
-              <p className="text-slate-600 text-lg">Stop losing money on missed calls and forgotten follow-ups. Our AI agents handle the repetitive &quot;Mind-Work&quot; so you can focus on strategy.</p>
-            </div>
-            <Link href="#contact" className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
-              View All Services <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {automationUseCases.map((useCase, idx) => (
-              <div key={idx} className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-blue-500 transition-all shadow-sm">
-                <div className={`w-14 h-14 rounded-2xl bg-${useCase.color}-50 flex items-center justify-center mb-6`}>
-                  <useCase.icon className={`w-7 h-7 text-${useCase.color}-600`} />
-                </div>
-                <h3 className="text-2xl font-bold mb-3">{useCase.title}</h3>
-                <p className="text-slate-600 mb-6">{useCase.description}</p>
-                <div className="p-3 bg-green-50 rounded-xl text-green-700 font-bold text-sm inline-block">
-                  {useCase.benefit}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- PRICING SECTION --- */}
-      <section id="pricing" className="py-24 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-extrabold mb-4">Straightforward Investment</h2>
-          <p className="text-slate-400 mb-16">Setup in 15 days. No hidden fees. Professional AI for serious businesses.</p>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Business Growth Plan */}
-            <div className="bg-slate-800/50 p-8 rounded-3xl border border-slate-700 text-left">
-              <h3 className="text-xl font-bold mb-2">Business Growth</h3>
-              <div className="text-4xl font-black mb-6">$4,900 <span className="text-sm font-normal text-slate-400">/setup</span></div>
-              <ul className="space-y-4 mb-8 text-slate-300">
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Single Voice Agent</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> WhatsApp Integration</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> 3 Months Maintenance</li>
-                <li className="flex items-center gap-2 font-bold text-white italic"><Clock className="w-4 h-4" /> 15-Day Deployment</li>
+            
+            <div className="lg:pl-16">
+              <ul className="space-y-8">
+                {[
+                  'Mobile App Development (iOS & Android)',
+                  'Web App Development',
+                  'MVP Scoping & Strategy',
+                  'Rapid Prototyping & Validation',
+                  'Product Design'
+                ].map((service, idx) => (
+                  <li key={idx} className="flex items-start gap-4 text-white text-xl border-b border-[#2A2A2A] pb-8">
+                    <div className="mt-1 font-mono text-cyan-400 text-sm">{'//'}</div>
+                    {service}
+                  </li>
+                ))}
               </ul>
-              <Button className="w-full inline-flex justify-center py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">
-                Contact Sales
-              </Button>
-            </div>
-
-            {/* Scale & Voice Plan (MOST POPULAR) */}
-            <div className="bg-blue-600 p-8 rounded-3xl text-left transform md:scale-110 shadow-2xl shadow-blue-600/20 relative">
-              <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-white text-blue-600 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest">Recommended</div>
-              <h3 className="text-xl font-bold mb-2">Scale & Voice</h3>
-              <div className="text-4xl font-black mb-6">$14,500 <span className="text-sm font-normal text-blue-100">/setup</span></div>
-              <ul className="space-y-4 mb-8 text-blue-50">
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-white" /> Multiple AI Personalities</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-white" /> Advanced CRM Sync</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-white" /> 6 Months Optimization</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-white" /> Custom Intent Detection</li>
-                <li className="flex items-center gap-2 font-bold text-white italic"><Clock className="w-4 h-4" /> Priority 15-Day Launch</li>
-              </ul>
-              <Button  className="w-full inline-flex justify-center py-3 rounded-xl bg-white text-blue-600 hover:bg-blue-50 transition-all font-bold">
-                Contact Sales
-              </Button>
-            </div>
-
-            {/* Custom Ecosystem Plan */}
-            <div className="bg-slate-800/50 p-8 rounded-3xl border border-slate-700 text-left">
-            <h3 className="text-xl font-bold mb-2">Full Business Automation</h3>
-              <div className="text-4xl font-black mb-6">Custom</div>
-              <ul className="space-y-4 mb-8 text-slate-300">
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Full Automation Suite</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> White-label Options</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Dedicated Lab Support</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-blue-400" /> Multi-country Deployment</li>
-              </ul>
-              <Button className="w-full inline-flex justify-center py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition-all font-bold">
-                Contact Sales
-              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- CONTACT & ROI SECTION --- */}
-      <section id="contact" className="py-24 bg-white">
+      {/* --- FOUNDER --- */}
+      <section id="about" className="py-32 bg-[#141414] border-y border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="w-full aspect-square bg-[#0a0a0a] border border-[#2A2A2A] relative overflow-hidden group rounded-xl">
+                <Link href="https://linkedin.com/in/gosrahul21" target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/founder.jpeg" alt="Rahul Goswami" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0" />
+                  <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </Link>
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="font-mono text-cyan-400 text-sm tracking-widest uppercase">the person behind it</h2>
+                <div className="flex gap-4">
+                  <a href="https://linkedin.com/in/gosrahul21" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="https://twitter.com/truemindlabs" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">
+                    <Twitter className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">Built by someone who left the job to build.</h3>
+              <div className="space-y-6 text-slate-400 text-lg mb-12">
+                <p>
+                  With over 5 years of software engineering experience building for both fast-paced startups and global MNCs, Rahul Goswami quit his job at the end of 2025 — not because he had a plan, but because he had a conviction. He started TrueMindLabs to walk the unknown path: building apps, shipping experiments, and documenting everything along the way.
+                </p>
+                <p>
+                  No investors. No co-working buzzwords. Just a builder on a mission to make things that matter.
+                </p>
+              </div>
+              <blockquote className="text-2xl md:text-3xl font-bold text-cyan-400 leading-tight">
+                "I'd rather fail building something real than succeed doing nothing."
+                <footer className="text-sm font-mono text-slate-500 mt-4">— Rahul Goswami</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- METRICS --- */}
+      <section className="py-20 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-mono text-slate-500 text-sm mb-12 tracking-widest uppercase text-center">by the numbers</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight italic">Let&apos;s talk about <span className="text-blue-600 underline">ROI</span>, not just AI.</h2>
-              <div className="space-y-8">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                    <Globe className="text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">Global Infrastructure</h4>
-                    <p className="text-slate-500">Processing millions of customer intents with a focus on regional accuracy and enterprise-grade reliability.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">Operational Security</h4>
-                    <p className="text-slate-500">99.9% Uptime SLA for critical payment and service reminders across all international time zones.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-12 p-8 bg-slate-50 rounded-3xl border border-slate-100">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Direct Communication</p>
-                <div className="space-y-2">
-                  <a href="mailto:hello@truemindlabs.com" className="text-2xl font-bold block hover:text-blue-600 transition-colors">hello@truemindlabs.com</a>
-                  <a href="tel:+917004572140" className="text-2xl font-bold block hover:text-blue-600 transition-colors">+91 70045 72140</a>
-                </div>
-              </div>
+              <div className="font-mono text-5xl md:text-6xl font-black text-cyan-400 mb-2">3+</div>
+              <div className="text-slate-500 font-mono text-sm">Apps shipped</div>
             </div>
-
-            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl">
-              <Form />
+            <div>
+              <div className="font-mono text-5xl md:text-6xl font-black text-cyan-400 mb-2">12+</div>
+              <div className="text-slate-500 font-mono text-sm">Experiments run</div>
+            </div>
+            <div>
+              <div className="font-mono text-5xl md:text-6xl font-black text-cyan-400 mb-2">5+</div>
+              <div className="text-slate-500 font-mono text-sm">Problems explored</div>
+            </div>
+            <div>
+              <div className="font-mono text-5xl md:text-6xl font-black text-cyan-400 mb-2">2025</div>
+              <div className="text-slate-500 font-mono text-sm">Year we started</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- BUSINESS FOOTER --- */}
-      <footer className="bg-slate-900 text-white pt-20 pb-10 border-t border-slate-800">
+      {/* --- CONTACT --- */}
+      <section id="contact" className="py-32 bg-[#141414] border-t border-[#2A2A2A] text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">let's build</h2>
+          <h3 className="text-5xl md:text-6xl font-bold text-white mb-8">Have an idea?<br/>Let's make it real.</h3>
+          <p className="text-slate-400 text-lg mb-12">
+            Whether you want to build something together or just want to follow the journey — reach out. We respond to every message.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+            <a href="mailto:hello@truemindlabs.com" className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-8 py-4 font-bold text-lg transition-all flex items-center justify-center gap-2">
+              hello@truemindlabs.com
+            </a>
+            <a href="https://twitter.com/truemindlabs" className="text-slate-400 hover:text-white px-8 py-4 transition-all font-mono">
+              @truemindlabs
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="bg-[#0a0a0a] text-white pt-20 pb-10 border-t border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-2">
-              <Logo color="white" />
-              <p className="mt-6 text-slate-400 max-w-sm">
-                Truemind Labs builds high-performance Voice AI agents for businesses that can&apos;t afford missed opportunities. From Sahibganj to London, we automate the &quot;Mind-Work.&quot;
+              <span className="text-xl font-bold font-mono text-white tracking-tight flex items-center mb-6">
+                truemindlabs<span className="text-cyan-400">_</span>
+              </span>
+              <p className="text-slate-400 max-w-sm">
+                A lab built for builders.
+              </p>
+              <p className="text-slate-500 text-sm mt-8">
+                &copy; 2026 TrueMindLabs. All rights reserved.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-6">Expertise</h4>
-              <ul className="space-y-4 text-slate-400 text-sm">
-                <li><Link href="#services">Voice AI Follow-ups</Link></li>
-                <li><Link href="#services">Intent Detection</Link></li>
-                <li><Link href="#services">CRM Automations</Link></li>
-                <li><Link href="#pricing">ROI Audits</Link></li>
+              <h4 className="font-mono text-slate-500 text-sm mb-6 uppercase">Links</h4>
+              <ul className="space-y-4 text-slate-300">
+                <li><Link href="#products" className="hover:text-cyan-400 transition-colors">Products</Link></li>
+                <li><Link href="#case-studies" className="hover:text-cyan-400 transition-colors">Case Studies</Link></li>
+                <li><Link href="#about" className="hover:text-cyan-400 transition-colors">About</Link></li>
+                <li><Link href="#contact" className="hover:text-cyan-400 transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-6">Company</h4>
-              <ul className="space-y-4 text-slate-400 text-sm">
-                <li><Link href="/about">Our Lab</Link></li>
-                <li><Link href="/projects">Case Studies</Link></li>
-                <li><Link href="/blog">AI for SMBs</Link></li>
-                <li><Link href="#contact">Contact Sales</Link></li>
+              <h4 className="font-mono text-slate-500 text-sm mb-6 uppercase">Social</h4>
+              <ul className="space-y-4 text-slate-300">
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">X / Twitter</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">GitHub</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Product Hunt</a></li>
               </ul>
             </div>
           </div>
-          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-6">
-              <a href="https://linkedin.com/company/truemind-labs" className="text-slate-400 hover:text-white transition-colors"><Linkedin /></a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors"><Twitter /></a>
-            </div>
-            <div className="text-slate-500 text-xs flex gap-6">
-              <span>&copy; 2026 Truemind Labs.</span>
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            </div>
+          <div className="pt-8 border-t border-[#2A2A2A] text-center font-mono text-cyan-400 text-sm">
+            Built fast. Shipped with conviction.
           </div>
         </div>
       </footer>
 
-      <ChatWidget />
     </div>
   );
 };
