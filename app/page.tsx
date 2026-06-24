@@ -18,7 +18,7 @@ const LandingPage = () => {
               // est. 2025 — building in public
             </div>
             <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-none">
-              A lab where ideas<br/>become apps.
+              A lab where ideas<br />become apps.
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed">
               We experiment, build, and ship mobile, web, and iOS apps that solve real problems. No committees. No waiting. Just products in the world.
@@ -27,7 +27,7 @@ const LandingPage = () => {
               <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-8 py-4 rounded-none font-bold text-lg transition-all flex items-center justify-center gap-2">
                 See our products <ArrowRight className="w-5 h-5" />
               </Button>
-              <Link 
+              <Link
                 href="#about"
                 className="text-slate-300 hover:text-white px-8 py-4 font-bold text-lg transition-all flex items-center justify-center gap-2"
               >
@@ -73,23 +73,9 @@ const LandingPage = () => {
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">Products that exist in the world.</h3>
             <p className="text-slate-400 max-w-2xl text-lg">Every app here started as an experiment. Some are live, some are in beta, all are real.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Product 1 */}
-            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
-              <div className="flex items-center gap-3 mb-8">
-                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
-                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
-                </span>
-                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Web</span>
-              </div>
-              <h4 className="text-3xl font-bold text-white mb-4">Reddit Lead Assistant</h4>
-              <p className="text-slate-400 mb-8 text-lg">An AI agent that finds high-intent leads on Reddit and drafts personalized outreach.</p>
-              <Link href="#" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
-                View <ExternalLink className="w-4 h-4" />
-              </Link>
-            </div>
-            
             {/* Product 2 */}
             <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group md:mt-16">
               <div className="flex items-center gap-3 mb-8">
@@ -119,8 +105,24 @@ const LandingPage = () => {
                 View <ExternalLink className="w-4 h-4" />
               </Link>
             </div>
+
+
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Web</span>
+              </div>
+              <h4 className="text-3xl font-bold text-white mb-4">Reddit Lead Assistant</h4>
+              <p className="text-slate-400 mb-8 text-lg">An AI agent that finds high-intent leads on Reddit and drafts personalized outreach.</p>
+              <Link href="#" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                {/* View <ExternalLink className="w-4 h-4" /> */}
+              </Link>
+            </div>
+
           </div>
-          
+
           <div className="text-center font-mono text-slate-500 text-sm mt-12">
             + More coming. We ship every few weeks.
           </div>
@@ -135,26 +137,26 @@ const LandingPage = () => {
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">We document what we learn.</h3>
             <p className="text-slate-400 text-lg max-w-2xl">Building in public means sharing the wins and the wreckage. Here's what we've learned from the things we've shipped.</p>
           </div>
-          
+
           <div className="space-y-0">
             {[
-              { 
-                date: 'Jun 2025', 
-                title: 'What we learned building Reddit Lead Assistant', 
+              {
+                date: 'Jun 2025',
+                title: 'What we learned building Reddit Lead Assistant',
                 readTime: '5 min read',
                 href: '/case-studies/reddit-lead-assistant',
                 description: 'An honest look at the architecture, the mistakes made along the way, and the final results.'
               },
-              { 
-                date: 'May 2025', 
-                title: 'Why our first iOS app failed (and what we salvaged)', 
+              {
+                date: 'May 2025',
+                title: 'Why our first iOS app failed (and what we salvaged)',
                 readTime: '8 min read',
                 href: '/case-studies/first-ios-app-failed',
                 description: 'A deep dive into the pitfalls of our first mobile launch and how we pivoted our strategy to recover.'
               },
-              { 
-                date: 'Apr 2025', 
-                title: 'Switching from Next.js to raw React for speed', 
+              {
+                date: 'Apr 2025',
+                title: 'Switching from Next.js to raw React for speed',
                 readTime: '4 min read',
                 href: '/case-studies/nextjs-to-react',
                 description: 'Why we ditched the framework overhead and embraced simplicity to achieve blazing fast load times.'
@@ -187,7 +189,7 @@ const LandingPage = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">for founders & teams</h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-8">Got a problem worth solving?<br/>We build apps for people who mean it.</h3>
+              <h3 className="text-4xl md:text-5xl font-bold text-white mb-8">Got a problem worth solving?<br />We build apps for people who mean it.</h3>
               <p className="text-slate-400 text-lg mb-12">
                 TrueMindLabs takes on select app development projects. If you have a real problem and want a team that moves fast and cares about craft — let's talk.
               </p>
@@ -195,7 +197,7 @@ const LandingPage = () => {
                 Start a conversation <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
-            
+
             <div className="lg:pl-16">
               <ul className="space-y-8">
                 {[
@@ -288,7 +290,7 @@ const LandingPage = () => {
       <section id="contact" className="py-32 bg-[#141414] border-t border-[#2A2A2A] text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-mono text-cyan-400 text-sm mb-6 tracking-widest uppercase">let's build</h2>
-          <h3 className="text-5xl md:text-6xl font-bold text-white mb-8">Have an idea?<br/>Let's make it real.</h3>
+          <h3 className="text-5xl md:text-6xl font-bold text-white mb-8">Have an idea?<br />Let's make it real.</h3>
           <p className="text-slate-400 text-lg mb-12">
             Whether you want to build something together or just want to follow the journey — reach out. We respond to every message.
           </p>
