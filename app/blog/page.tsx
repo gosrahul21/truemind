@@ -13,18 +13,18 @@ const BlogPage = () => {
   const blogPosts = [
     {
       id: 4,
-      title: "Music Production Software in 2026: Here's What's Actually Out There",
+      title: "Best Music Production Apps in 2026",
       excerpt: "A laid-back look at 8 DAWs and apps — what they do, what they don't, and who they're probably meant for.",
       category: "Audio Tech",
       author: "Rahul Goswami",
       date: "Jun 25, 2026",
       readTime: "5 min read",
       image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800",
-      slug: "music-production-software-2026"
+      slug: "music-production-apps-2026"
     },
     {
       id: 1,
-      title: "OpenAI vs Generative AI: What’s the Real Difference?",
+      title: "OpenAI vs Generative AI",
       excerpt: "Many businesses confuse the company with the technology. We break down why knowing the difference matters for your AI strategy.",
       category: "AI Strategy",
       author: "Rahul Goswami",
