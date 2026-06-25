@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, Clock, User, ArrowLeft, 
-  Share2, Linkedin, Twitter, CheckCircle2 
+  Share2, Linkedin, Twitter, CheckCircle2, Eye
 } from 'lucide-react';
 import Link from 'next/link';
 import Header from '@/app/components/Header';
@@ -11,6 +11,20 @@ import Button from '@/app/widgets/button';
 
 const BlogPost = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [views, setViews] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/views', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: 'music-production-software-2026' })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.views !== undefined) setViews(data.views);
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +78,7 @@ const BlogPost = () => {
               <div className="flex items-center gap-4 text-sm font-mono text-slate-500">
                 <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Jun 25, 2026</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 5 min read</span>
+                <span className="flex items-center gap-1.5"><Eye className="w-4 h-4" /> {views > 0 ? `${views} views` : '...'}</span>
               </div>
             </div>
           </div>
