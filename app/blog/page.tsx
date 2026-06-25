@@ -8,9 +8,20 @@ import Logo from '../components/Logo';
 import Link from 'next/link';
 
 const BlogPage = () => {
-  const categories = ["All", "AI Strategy", "Voice AI", "Case Studies", "Technical"];
+  const categories = ["All", "AI Strategy", "Voice AI", "Case Studies", "Technical", "Audio Tech"];
 
   const blogPosts = [
+    {
+      id: 4,
+      title: "Music Production Software in 2026: Here's What's Actually Out There",
+      excerpt: "A laid-back look at 8 DAWs and apps — what they do, what they don't, and who they're probably meant for.",
+      category: "Audio Tech",
+      author: "Rahul Goswami",
+      date: "Jun 25, 2026",
+      readTime: "5 min read",
+      image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800",
+      slug: "music-production-software-2026"
+    },
     {
       id: 1,
       title: "OpenAI vs Generative AI: What’s the Real Difference?",
@@ -47,44 +58,44 @@ const BlogPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="min-h-screen bg-[#0a0a0a] font-sans text-white selection:bg-cyan-500/30">
       <Header />
 
       {/* --- HERO SECTION --- */}
-      <section className="pt-32 pb-16 bg-[#020617] text-white">
+      <section className="pt-32 pb-16 bg-[#0a0a0a] text-white border-b border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-sm tracking-widest uppercase mb-6">
             Insights & Research
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Truemind</span> Journal
+          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-none">
+            The <span className="text-cyan-400">Truemind</span> Journal
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Exploring the intersection of Voice AI, regional automation, and business ROI. 
-            No hype—just practical intelligence for the modern enterprise.
+            Exploring the intersection of technology, product building, and engineering culture. 
+            No hype—just practical intelligence.
           </p>
         </div>
       </section>
 
       {/* --- FILTER & SEARCH BAR --- */}
-      <section className="py-8 border-b border-slate-100 sticky top-16 bg-white/80 backdrop-blur-md z-30">
+      <section className="py-8 border-b border-[#2A2A2A] sticky top-16 bg-[#0a0a0a]/80 backdrop-blur-md z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
             {categories.map((cat) => (
               <button 
                 key={cat} 
-                className={`px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${cat === 'All' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'}`}
+                className={`px-4 py-2 font-mono text-sm tracking-wider uppercase whitespace-nowrap transition-colors border ${cat === 'All' ? 'bg-cyan-500 text-slate-900 border-cyan-500 font-bold' : 'bg-[#141414] text-slate-400 border-[#2A2A2A] hover:border-cyan-500/50 hover:text-white'}`}
               >
                 {cat}
               </button>
             ))}
           </div>
           <div className="relative w-full md:w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input 
               type="text" 
               placeholder="Search articles..." 
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+              className="w-full pl-10 pr-4 py-2 bg-[#141414] border border-[#2A2A2A] text-white placeholder:text-slate-500 text-sm focus:outline-none focus:border-cyan-500/50 transition-all font-mono"
             />
           </div>
         </div>
@@ -96,41 +107,41 @@ const BlogPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {blogPosts.map((post) => (
               <article key={post.id} className="group cursor-pointer">
-                <div className="relative h-64 mb-6 overflow-hidden rounded-3xl bg-slate-100">
+                <div className="relative h-64 mb-6 overflow-hidden bg-[#141414] border border-[#2A2A2A]">
                   <img 
                     src={post.image} 
                     alt={post.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-full object-cover grayscale opacity-80 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-blue-600 uppercase tracking-widest shadow-sm">
+                    <span className="bg-[#0a0a0a]/90 backdrop-blur-sm px-3 py-1 text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest border border-[#2A2A2A]">
                       {post.category}
                     </span>
                   </div>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+                  <div className="flex items-center gap-4 text-xs font-mono text-slate-500">
                     <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {post.date}</span>
                     <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> {post.readTime}</span>
                   </div>
                   
-                  <h3 className="text-2xl font-bold leading-tight group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-2xl font-bold leading-tight text-white group-hover:text-cyan-400 transition-colors">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   
-                  <p className="text-slate-600 line-clamp-2">
+                  <p className="text-slate-400 line-clamp-2">
                     {post.excerpt}
                   </p>
                   
-                  <div className="pt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] font-bold">
+                  <div className="pt-4 flex items-center justify-between border-t border-[#2A2A2A]/50 mt-4">
+                    <div className="flex items-center gap-3 mt-4">
+                      <div className="w-8 h-8 bg-cyan-500 flex items-center justify-center text-slate-900 text-[10px] font-bold">
                         RG
                       </div>
-                      <span className="text-sm font-bold text-slate-700">{post.author}</span>
+                      <span className="text-sm font-bold text-white">{post.author}</span>
                     </div>
-                    <Link href={`/blog/${post.slug}`} className="text-blue-600">
+                    <Link href={`/blog/${post.slug}`} className="text-cyan-400 mt-4">
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -141,7 +152,7 @@ const BlogPage = () => {
 
           {/* Pagination or Load More */}
           <div className="mt-20 text-center">
-            <button className="px-8 py-4 bg-white border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all shadow-sm">
+            <button className="px-8 py-4 bg-[#141414] border border-[#2A2A2A] font-bold text-slate-300 hover:border-cyan-500/50 hover:text-white transition-all">
               Load More Insights
             </button>
           </div>
@@ -149,34 +160,33 @@ const BlogPage = () => {
       </section>
 
       {/* --- NEWSLETTER CAPTURE --- */}
-      <section className="pb-24 px-4">
-        <div className="max-w-5xl mx-auto bg-blue-600 rounded-[3rem] p-8 md:p-16 text-center text-white relative overflow-hidden">
+      <section className="pb-24 px-4 border-t border-[#2A2A2A] pt-24 bg-[#141414]">
+        <div className="max-w-4xl mx-auto bg-[#0a0a0a] border border-[#2A2A2A] p-8 md:p-16 text-center text-white relative overflow-hidden">
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Stay ahead of the AI curve</h2>
-            <p className="text-blue-100 mb-10 max-w-xl mx-auto">
-              Join 500+ business owners receiving our bi-weekly breakdown of AI automation strategies that actually work.
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Stay ahead of the curve</h2>
+            <p className="text-slate-400 mb-10 max-w-xl mx-auto text-lg">
+              Join our network receiving bi-weekly breakdowns of product experiments, tech deep-dives, and things we build.
             </p>
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input 
                 type="email" 
-                placeholder="Work email address" 
-                className="flex-1 px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-blue-200 focus:outline-none focus:bg-white/20 transition-all"
+                placeholder="email@example.com" 
+                className="flex-1 px-6 py-4 bg-[#141414] border border-[#2A2A2A] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 transition-all font-mono"
               />
-              <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition-all">
+              <button className="px-8 py-4 bg-cyan-500 text-slate-900 font-bold hover:bg-cyan-400 transition-all">
                 Subscribe
               </button>
             </form>
           </div>
-          {/* Decorative circles */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
         </div>
       </section>
 
-      <footer className="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-400 text-sm">
-            <Logo color="white" />
-            <p className="mt-4">© 2026 Truemind Labs. Engineering Intelligence.</p>
+      <footer className="bg-[#0a0a0a] text-white py-12 border-t border-[#2A2A2A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm font-mono tracking-widest">
+            <span className="text-xl font-bold text-white mb-4 inline-block">
+              truemindlabs<span className="text-cyan-400">_</span>
+            </span>
+            <p className="mt-2">© 2026 TrueMindLabs. Engineering Intelligence.</p>
         </div>
       </footer>
     </div>
