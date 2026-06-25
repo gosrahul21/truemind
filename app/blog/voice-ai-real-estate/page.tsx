@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Calendar, Clock, ArrowLeft, Share2, Linkedin, Twitter, 
   CheckCircle2, Building2, PhoneCall, Filter, MapPin
@@ -6,6 +5,9 @@ import {
 import Link from 'next/link';
 import Header from '@/app/components/Header'; // Adjust path based on your setup
 import Button from '@/app/widgets/button';
+import ReadingProgressBar from '@/app/components/blog/ReadingProgressBar';
+import ViewCounter from '@/app/components/blog/ViewCounter';
+import CommentsSection from '@/app/components/blog/CommentsSection';
 
 const RealEstateBlog = () => {
   return (
@@ -13,9 +15,7 @@ const RealEstateBlog = () => {
       <Header />
 
       {/* --- READING PROGRESS BAR --- */}
-      <div className="fixed top-16 left-0 w-full h-1 bg-slate-100 z-50">
-        <div className="bg-indigo-600 h-full w-1/3"></div>
-      </div>
+      <ReadingProgressBar />
 
       <article className="pt-32 pb-24">
         {/* --- HEADER SECTION --- */}
@@ -48,6 +48,7 @@ const RealEstateBlog = () => {
               <div className="flex items-center gap-4 text-sm text-slate-400">
                 <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Mar 22, 2026</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 7 min read</span>
+                <ViewCounter slug="voice-ai-real-estate" />
               </div>
             </div>
           </div>
@@ -173,6 +174,8 @@ const RealEstateBlog = () => {
             </Button>
           </div>
         </div>
+
+        <CommentsSection slug="voice-ai-real-estate" />
       </article>
 
       {/* --- RELATED POSTS --- */}

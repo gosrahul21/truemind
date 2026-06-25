@@ -6,7 +6,9 @@ import {
 import Link from 'next/link';
 import Header from '@/app/components/Header'; // Adjust path based on your setup
 import Button from '@/app/widgets/button';
-import Image from 'next/image';
+import ReadingProgressBar from '@/app/components/blog/ReadingProgressBar';
+import ViewCounter from '@/app/components/blog/ViewCounter';
+import CommentsSection from '@/app/components/blog/CommentsSection';
 
 const SolarBlogDeepDive = () => {
   return (
@@ -14,9 +16,7 @@ const SolarBlogDeepDive = () => {
       <Header />
 
       {/* --- READING PROGRESS BAR --- */}
-      <div className="fixed top-16 left-0 w-full h-1 bg-slate-100 z-50">
-        <div className="bg-amber-500 h-full w-1/3"></div>
-      </div>
+      <ReadingProgressBar />
 
       <article className="pt-32 pb-24">
         {/* --- HEADER SECTION --- */}
@@ -49,6 +49,7 @@ const SolarBlogDeepDive = () => {
               <div className="flex items-center gap-4 text-sm text-slate-400">
                 <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Mar 18, 2026</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 7 min read</span>
+                <ViewCounter slug="voice-ai-solar-epc" />
               </div>
             </div>
           </div>
@@ -57,10 +58,9 @@ const SolarBlogDeepDive = () => {
         {/* --- FEATURED IMAGE --- */}
         <div className="max-w-6xl mx-auto px-4 mb-16">
           <div className="aspect-video rounded-[2rem] overflow-hidden bg-slate-100 shadow-2xl relative">
-            <Image 
+            <img 
               src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=1400" 
               alt="Solar Panel Array installation" 
-              width={"100"}
               className="w-full h-full object-cover"
             />
             
@@ -167,6 +167,8 @@ const SolarBlogDeepDive = () => {
             </Button>
           </div>
         </div>
+
+        <CommentsSection slug="voice-ai-solar-epc" />
       </article>
 
       {/* --- RELATED POSTS --- */}

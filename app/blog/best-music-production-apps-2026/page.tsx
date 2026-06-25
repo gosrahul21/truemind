@@ -1,51 +1,36 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import { 
-  Calendar, Clock, User, ArrowLeft, 
-  Share2, Linkedin, Twitter, CheckCircle2, Eye
+  Calendar, Clock, ArrowLeft, 
+  Share2, Linkedin, Twitter, CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
 import Header from '@/app/components/Header';
 import Button from '@/app/widgets/button';
+import ReadingProgressBar from '@/app/components/blog/ReadingProgressBar';
+import ViewCounter from '@/app/components/blog/ViewCounter';
+import CommentsSection from '@/app/components/blog/CommentsSection';
+
+export const metadata: Metadata = {
+  title: "Here are the Best Music Production Apps in 2026 | TrueMindLabs",
+  description: "A laid-back look at 8 DAWs and apps — what they do, what they don't, and who they're probably meant for.",
+  openGraph: {
+    title: "Here are the Best Music Production Apps in 2026",
+    description: "A laid-back look at 8 DAWs and apps — what they do, what they don't, and who they're probably meant for.",
+    type: "article",
+    authors: ["Rahul Goswami"],
+  }
+};
 
 const BlogPost = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [views, setViews] = useState(0);
-
-  useEffect(() => {
-    fetch('/api/views', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug: 'music-production-software-2026' })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.views !== undefined) setViews(data.views);
-      })
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = `${(totalScroll / windowHeight) * 100}`;
-      setScrollProgress(Number(scroll));
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const slug = 'best-music-production-apps-2026';
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] font-sans text-white selection:bg-cyan-500/30">
       <Header />
 
       {/* --- READING PROGRESS BAR (Optional visual) --- */}
-      <div className="fixed top-16 left-0 w-full h-1 bg-[#141414] z-50">
-        <div className="bg-cyan-500 h-full transition-all duration-150" style={{ width: `${scrollProgress}%` }}></div>
-      </div>
+      <ReadingProgressBar />
 
       <article className="pt-32 pb-24">
         {/* --- HEADER SECTION --- */}
@@ -62,7 +47,7 @@ const BlogPost = () => {
               Audio Tech
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
-              Music Production Software in 2026: Here&apos;s What&apos;s Actually Out There
+              Here are the Best Music Production Apps in 2026
             </h1>
             
             <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-[#2A2A2A]">
@@ -78,7 +63,7 @@ const BlogPost = () => {
               <div className="flex items-center gap-4 text-sm font-mono text-slate-500">
                 <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Jun 25, 2026</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 5 min read</span>
-                <span className="flex items-center gap-1.5"><Eye className="w-4 h-4" /> {views > 0 ? `${views} views` : '...'}</span>
+                <ViewCounter slug={slug} />
               </div>
             </div>
           </div>
@@ -103,10 +88,10 @@ const BlogPost = () => {
             </p>
             
             <p className="mb-8">
-              Picking a DAW is kind of overwhelming when you first look into it. There are a lot of options, everyone online has strong opinions, and honestly most of the &quot;best DAW&quot; discussions turn into arguments pretty fast.
+              Picking a DAW is kind of overwhelming as there are a lot of options, everyone online has strong opinions, and honestly most of the &quot;best DAW&quot; discussions turn into arguments pretty fast.
             </p>
             <p className="mb-12">
-              So this isn&apos;t that. This is a walkthrough of the main options in 2026 — what each one is like to use, where it falls short, and who it tends to work well for. 
+              So this isn&apos;t that. This is a walkthrough of the main options in 2026 — what each one is like to use, where it falls short, and for whom it works well. 
             </p>
 
             <h2 className="text-3xl font-bold mt-12 mb-6 text-white">What&apos;s a DAW, quick version</h2>
@@ -401,6 +386,8 @@ const BlogPost = () => {
             </Button>
           </div>
         </div>
+
+        <CommentsSection slug={slug} />
       </article>
 
       {/* --- RELATED POSTS --- */}

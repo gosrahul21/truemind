@@ -6,6 +6,9 @@ import {
 import Link from 'next/link';
 import Header from '@/app/components/Header'; // Adjust path based on your setup
 import Button from '@/app/widgets/button';
+import ReadingProgressBar from '@/app/components/blog/ReadingProgressBar';
+import ViewCounter from '@/app/components/blog/ViewCounter';
+import CommentsSection from '@/app/components/blog/CommentsSection';
 
 const BlogPost = () => {
   return (
@@ -13,9 +16,7 @@ const BlogPost = () => {
       <Header />
 
       {/* --- READING PROGRESS BAR (Optional visual) --- */}
-      <div className="fixed top-16 left-0 w-full h-1 bg-slate-100 z-50">
-        <div className="bg-blue-600 h-full w-1/3"></div>
-      </div>
+      <ReadingProgressBar />
 
       <article className="pt-32 pb-24">
         {/* --- HEADER SECTION --- */}
@@ -48,6 +49,7 @@ const BlogPost = () => {
               <div className="flex items-center gap-4 text-sm text-slate-400">
                 <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Mar 15, 2026</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 6 min read</span>
+                <ViewCounter slug="openai-vs-generative-ai" />
               </div>
             </div>
           </div>
@@ -167,6 +169,8 @@ const BlogPost = () => {
             </Button>
           </div>
         </div>
+
+        <CommentsSection slug="openai-vs-generative-ai" />
       </article>
 
       {/* --- RELATED POSTS --- */}
