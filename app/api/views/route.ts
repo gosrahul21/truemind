@@ -10,10 +10,10 @@ export async function POST(request: Request) {
   try {
     const { slug } = await request.json();
     if (!slug) return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
-    
+
     // Increment the view count for the given slug
     const views = await redis.incr(`views:${slug}`);
-    
+
     return NextResponse.json({ views });
   } catch (error) {
     console.error('Error incrementing views:', error);
