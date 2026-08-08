@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  id          String   @id @default(uuid())
+  domainName  String
+  title       String
+  slug        String
+  content     String   // Will store rich HTML/Markdown content
+  excerpt     String?
+  coverImage  String?  // Media link
+  videoUrl    String?  // Video link (e.g. YouTube)
+  authorName  String?
+  tags        String[]
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([domainName, slug])
+}
