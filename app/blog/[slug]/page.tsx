@@ -71,7 +71,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               <img 
                 src={urlForImage(post.coverImage)} 
                 alt={post.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           )}
