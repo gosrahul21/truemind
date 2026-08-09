@@ -12,7 +12,7 @@ import { portableTextComponents } from '../../components/PortableTextComponents'
 // Since we are building an ISR page driven by on-demand revalidation, 
 // Next.js will cache this page when statically generated.
 
-interface BlogPostProps {
+interface NewsPostProps {
   params: Promise<{
     slug: string;
   }>;
@@ -27,19 +27,18 @@ function getEmbedUrl(url: string) {
   } else if (url.includes('youtu.be/')) {
     return url.replace('youtu.be/', 'youtube.com/embed/');
   } else if (url.includes('tiktok.com')) {
-    // Basic fallback for tiktok, though tiktok oembed is usually better
     const videoId = url.split('/').pop()?.split('?')[0];
     return `https://www.tiktok.com/embed/v2/${videoId}`;
   }
   return url;
 }
 
-export default async function BlogPost({ params }: BlogPostProps) {
+export default async function NewsPost({ params }: NewsPostProps) {
   // In Next.js 15, params is a promise. Wait for it to resolve.
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
-  const query = `*[_type == "post" && category == "blog" && slug.current == $slug && domainName == $domainName][0]`;
+  const query = `*[_type == "post" && category == "news" && slug.current == $slug && domainName == $domainName][0]`;
   const post = await client.fetch(query, { 
     slug, 
     domainName: process.env.DOMAIN_NAME || 'default-domain' 
@@ -127,7 +126,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 // if we use dynamic rendering that gets cached upon first request.
 // Uncomment this to pre-build paths at build time:
 export async function generateStaticParams() {
-  const query = `*[_type == "post" && category == "blog"]{ slug }`;
+  const query = `*[_type == "post" && category == "news"]{ slug }`;
   const posts = await client.fetch(query);
   return posts.map((post: { slug: { current: string } }) => ({
     slug: post.slug.current,

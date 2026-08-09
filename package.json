@@ -9,8 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.9.1",
-    "@prisma/client": "^7.9.1",
+    "@portabletext/react": "^7.0.1",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.9.1",
     "@tailwindcss/typography": "^0.5.20",
     "@tiptap/extension-bubble-menu": "^3.29.2",
     "@tiptap/extension-character-count": "^3.29.2",
@@ -24,14 +25,15 @@
     "@tiptap/pm": "^3.29.2",
     "@tiptap/react": "^3.29.2",
     "@tiptap/starter-kit": "^3.29.2",
-    "@types/pg": "^8.21.0",
     "@upstash/redis": "^1.38.0",
     "ioredis": "^5.11.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
-    "pg": "^8.22.0",
+    "next-sanity": "^13.3.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sanity": "^6.9.1",
+    "styled-components": "^6.5.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -40,7 +42,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
-    "prisma": "^7.9.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
