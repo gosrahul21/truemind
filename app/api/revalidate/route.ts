@@ -12,17 +12,20 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { slug } = body;
+    const { slug, category } = body;
 
     if (!slug) {
       return NextResponse.json({ message: 'Missing slug' }, { status: 400 });
     }
 
-    // Revalidate the specific blog post
-    revalidatePath(`/blog/${slug}`);
-    
-    // Also revalidate the main blog list page if you have one
-    revalidatePath('/blog');
+    // Revalidate based on the post category (blog or news)
+    if (category === 'news') {
+      revalidatePath(`/news/${slug}`);
+      revalidatePath('/news');
+    } else {
+      revalidatePath(`/blog/${slug}`);
+      revalidatePath('/blog');
+    }
 
     return NextResponse.json({ revalidated: true, now: Date.now(), slug });
   } catch (err) {

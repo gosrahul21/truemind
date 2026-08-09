@@ -136,7 +136,7 @@ export default function MediumEditor() {
 
   const setLink = useCallback(() => {
     if (!linkUrl) {
-      editor?.chain().focus().extendMarkToLink({ href: '' }).unsetLink().run();
+      editor?.chain().focus().extendMarkRange('link').unsetLink().run();
       setShowLinkInput(false);
       return;
     }
