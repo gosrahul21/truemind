@@ -25,7 +25,7 @@ const BlogPage = async () => {
   
   const sanityPosts = await client.fetch(query, {
     domainName: process.env.DOMAIN_NAME || 'default-domain'
-  });
+  }, { cache: 'force-cache' });
 
   const formattedSanityPosts = sanityPosts.map((post: any) => ({
     id: post._id,

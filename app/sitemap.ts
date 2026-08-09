@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     publishedAt
   }`;
   
-  const posts = await client.fetch(query);
+  const posts = await client.fetch(query, {}, { cache: 'force-cache' });
 
   const postUrls = posts.map((post: any) => {
     // Determine the base path based on the post category (defaulting to blog)

@@ -43,7 +43,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const post = await client.fetch(query, { 
     slug, 
     domainName: process.env.DOMAIN_NAME || 'default-domain' 
-  });
+  }, { cache: 'force-cache' });
 
   if (!post) {
     notFound();
@@ -128,7 +128,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 // Uncomment this to pre-build paths at build time:
 export async function generateStaticParams() {
   const query = `*[_type == "post" && category == "blog"]{ slug }`;
-  const posts = await client.fetch(query);
+  const posts = await client.fetch(query, {}, { cache: 'force-cache' });
   return posts.map((post: { slug: { current: string } }) => ({
     slug: post.slug.current,
   }));
