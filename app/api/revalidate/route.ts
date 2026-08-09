@@ -27,6 +27,9 @@ export async function POST(request: NextRequest) {
       revalidatePath('/blog');
     }
 
+    // Revalidate the sitemap to include the new post
+    revalidatePath('/sitemap.xml');
+
     return NextResponse.json({ revalidated: true, now: Date.now(), slug });
   } catch (err) {
     console.error('Error revalidating:', err);

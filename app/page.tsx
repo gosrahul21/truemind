@@ -121,6 +121,36 @@ const LandingPage = () => {
               </Link>
             </div>
 
+            {/* Product 4 */}
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Extension</span>
+              </div>
+              <h4 className="text-3xl font-bold text-white mb-4">XThreadShot</h4>
+              <p className="text-slate-400 mb-8 text-lg">A Chrome extension that snaps any X (Twitter) post or thread into a clean, on-brand image, right from your timeline. No web app, no clutter, no stitching.</p>
+              <Link href="https://xthreadshot.truemindlabs.com" target="_blank" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                View <ExternalLink className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Product 5 */}
+            <div className="bg-[#141414] border border-[#2A2A2A] p-8 md:p-12 hover:border-cyan-500/50 transition-all group">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="flex items-center gap-2 text-xs font-mono bg-cyan-500/10 text-cyan-400 px-3 py-1 border border-cyan-500/20">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span> Live
+                </span>
+                <span className="text-xs font-mono text-slate-500 border border-[#2A2A2A] px-3 py-1">Extension</span>
+              </div>
+              <h4 className="text-3xl font-bold text-white mb-4">Twitter Blur</h4>
+              <p className="text-slate-400 mb-8 text-lg">Enhance your privacy and reduce distractions by blurring sensitive media, text, or elements directly on your X (Twitter) feed.</p>
+              <Link href="#" className="inline-flex items-center gap-2 text-cyan-400 font-bold group-hover:gap-3 transition-all">
+                {/* View <ExternalLink className="w-4 h-4" /> */}
+              </Link>
+            </div>
+
           </div>
 
           <div className="text-center font-mono text-slate-500 text-sm mt-12">

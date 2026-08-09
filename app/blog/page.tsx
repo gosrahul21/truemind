@@ -6,9 +6,38 @@ import {
 import Header from '../components/Header';
 import Logo from '../components/Logo';
 import Link from 'next/link';
+import { client } from '../../sanity/lib/client';
+import { urlForImage } from '../../sanity/lib/image';
 
-const BlogPage = () => {
+const BlogPage = async () => {
   const categories = ["All", "AI Strategy", "Voice AI", "Case Studies", "Technical", "Audio Tech"];
+
+  const query = `*[_type == "post" && domainName == $domainName] | order(publishedAt desc) {
+    _id,
+    title,
+    excerpt,
+    "slug": slug.current,
+    "image": coverImage,
+    authorName,
+    publishedAt,
+    tags
+  }`;
+  
+  const sanityPosts = await client.fetch(query, {
+    domainName: process.env.DOMAIN_NAME || 'default-domain'
+  });
+
+  const formattedSanityPosts = sanityPosts.map((post: any) => ({
+    id: post._id,
+    title: post.title,
+    excerpt: post.excerpt || '',
+    category: post.tags && post.tags.length > 0 ? post.tags[0] : 'AI Strategy',
+    author: post.authorName || 'Truemind Research',
+    date: post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'Mar 15, 2026',
+    readTime: "5 min read",
+    image: post.image ? urlForImage(post.image) : 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+    slug: post.slug
+  }));
 
   const blogPosts = [
     {
@@ -56,6 +85,8 @@ const BlogPage = () => {
       slug: "multilingual-ai-agents"
     }
   ];
+
+  const allPosts = [...formattedSanityPosts, ...blogPosts];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] font-sans text-white selection:bg-cyan-500/30">
@@ -105,7 +136,7 @@ const BlogPage = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {blogPosts.map((post) => (
+            {allPosts.map((post) => (
               <article key={post.id} className="group cursor-pointer">
                 <div className="relative h-64 mb-6 overflow-hidden bg-[#141414] border border-[#2A2A2A]">
                   <img 
