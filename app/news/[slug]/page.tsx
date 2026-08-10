@@ -5,7 +5,36 @@ import { PortableText } from '@portabletext/react';
 import TableOfContents from '../../components/TableOfContents';
 import { extractHeadings } from '../../lib/toc';
 import { portableTextComponents } from '../../components/PortableTextComponents';
+import { Metadata } from 'next';
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+
+  const query = `*[_type == "post" && category == "news" && slug.current == $slug && domainName == $domainName][0]{
+    title,
+    excerpt,
+    coverImage
+  }`;
+  
+  const post = await client.fetch(query, { 
+    slug, 
+    domainName: process.env.DOMAIN_NAME || 'default-domain' 
+  }, { cache: 'force-cache' });
+
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    description: post.excerpt || post.title,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || post.title,
+      type: 'article',
+      images: post.coverImage ? [urlForImage(post.coverImage)] : [],
+    },
+  };
+}
 // We do NOT use `export const revalidate = 60` or similar here.
 // By default in Next.js, fetches without `revalidate` are cached indefinitely, 
 // and we bust this cache via our on-demand webhook.
@@ -51,8 +80,26 @@ export default async function NewsPost({ params }: NewsPostProps) {
   // Extract headings from the content blocks for the TOC
   const headings = post.content ? extractHeadings(post.content) : [];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: post.title,
+    image: post.coverImage ? [urlForImage(post.coverImage)] : [],
+    datePublished: post.publishedAt,
+    dateModified: post._updatedAt || post.publishedAt,
+    author: [{
+      '@type': 'Person',
+      name: post.authorName || 'Truemind Labs',
+      url: `https://${process.env.DOMAIN_NAME || 'truemindlabs.com'}`
+    }]
+  };
+
   return (
     <main className="max-w-7xl mx-auto py-12 px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="flex flex-col lg:flex-row gap-12 items-start relative">
         
         {/* Left Side: Main Content */}
