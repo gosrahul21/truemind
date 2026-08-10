@@ -50,7 +50,7 @@ const NewsPage = async () => {
             Updates & Announcements
           </div>
           <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-none">
-            The <span className="text-cyan-400">Truemind</span> Newsroom
+            The <span className="text-cyan-400">TruemindLabs</span> Newsroom
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Stay up to date with our latest product releases, company announcements, and industry events.
