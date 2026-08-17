@@ -63,7 +63,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
             {post.authorName && (
               <p className="text-gray-500 dark:text-gray-400 text-lg">By {post.authorName} • {new Date(post.publishedAt).toLocaleDateString()}</p>
             )}
-            <p className="text-gray-500 dark:text-gray-400 text-lg">{new Date().getTime()}</p>
           </header>
 
           {post.coverImage && (
