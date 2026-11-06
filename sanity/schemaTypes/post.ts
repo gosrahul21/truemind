@@ -94,6 +94,7 @@ export default defineType({
         { type: 'table' },
         { type: 'callout' },
         { type: 'youtube' },
+        { type: 'faq' },
       ],
     }),
     defineField({

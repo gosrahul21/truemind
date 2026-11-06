@@ -187,6 +187,44 @@ export const portableTextComponents: PortableTextComponents = {
         </figure>
       );
     },
+    faq: ({ value }: any) => {
+      if (!value?.items || !Array.isArray(value.items) || value.items.length === 0) return null;
+      return (
+        <section className="my-12 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50 p-6 md:p-8 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 font-bold text-sm">
+              FAQ
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 m-0">
+              {value.title || 'Frequently Asked Questions'}
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {value.items.map((item: any, idx: number) => (
+              <details
+                key={idx}
+                className="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800/60 p-5 transition-all duration-200 hover:border-indigo-400/50 dark:hover:border-indigo-500/50"
+              >
+                <summary className="flex cursor-pointer items-center justify-between font-semibold text-gray-900 dark:text-gray-100 list-none text-base md:text-lg">
+                  <span className="flex items-start gap-3">
+                    <span className="text-indigo-600 dark:text-indigo-400 font-bold select-none">Q:</span>
+                    <span>{item.question}</span>
+                  </span>
+                  <span className="ml-4 flex-shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="mt-3 pl-7 text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line border-t border-gray-100 dark:border-gray-800/80 pt-3">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      );
+    },
   },
 };
 
